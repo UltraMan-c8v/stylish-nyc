@@ -141,7 +141,7 @@
         // all visitors a different business. The picker in the nav overrides it
         // and the choice is remembered.
         try {
-          var stored = localStorage.getItem('snyc-theme')
+          var stored = localStorage.getItem('snyc-theme.2')
           var theme = VALID.indexOf(stored) > -1 ? stored : 'onyx-crimson'
           document.documentElement.setAttribute('data-theme', theme)
         } catch (e) {

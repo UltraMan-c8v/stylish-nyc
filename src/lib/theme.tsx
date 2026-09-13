@@ -18,18 +18,23 @@ function readInitialTheme(): Theme {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(readInitialTheme)
 
+  // Reflect the theme onto the document, and nothing else. Writing to storage
+  // here as well, which is what this used to do, meant the default got saved
+  // on first paint as though the visitor had chosen it. Persistence belongs to
+  // the act of choosing, so it lives in setTheme.
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, theme)
-    } catch {
-      // Private browsing. The in-memory theme still applies this session.
-    }
   }, [theme])
 
   const setTheme = useCallback(
     (next: Theme, origin?: { x: number; y: number }) => {
       if (next === theme) return
+
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, next)
+      } catch {
+        // Private browsing. The in-memory theme still applies this session.
+      }
 
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       const supported = typeof document.startViewTransition === 'function'

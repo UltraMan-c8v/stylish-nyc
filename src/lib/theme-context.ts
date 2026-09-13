@@ -50,7 +50,21 @@ export const THEME_IDS = THEMES.map((t) => t.id) as readonly Theme[]
 export const DEFAULT_THEME: Theme = 'onyx-crimson'
 export const LIGHT_THEME: Theme = 'chalk'
 
-export const THEME_STORAGE_KEY = 'snyc-theme'
+/**
+ * Versioned on purpose.
+ *
+ * The previous key holds a value for every visitor who ever loaded the site,
+ * including the large majority who never opened the picker: the provider used
+ * to write the active theme to storage on mount, so the *default* was being
+ * saved as though it were a choice. The consequence was that changing the
+ * default reached nobody who had already visited. They kept whatever had been
+ * default on the day they first arrived.
+ *
+ * Bumping the key retires all of those phantom preferences in one move, and
+ * the provider now only writes when someone actually picks something. Bump it
+ * again if the default ever changes and returning visitors should follow.
+ */
+export const THEME_STORAGE_KEY = 'snyc-theme.2'
 
 export function isTheme(value: unknown): value is Theme {
   return typeof value === 'string' && (THEME_IDS as readonly string[]).includes(value)

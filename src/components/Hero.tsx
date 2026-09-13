@@ -98,7 +98,7 @@ export function Hero() {
       >
         <img
           src="/img/hero-editorial.webp"
-          alt="An editorial studio portrait: dark hair rolled up into height at the crown and swept back, in a metallic dress."
+          alt="An editorial studio portrait on a dark grey sweep: dark hair rolled up into height at the crown and swept back, in a metallic dress."
           width={1334}
           height={2000}
           fetchPriority="high"
@@ -108,10 +108,11 @@ export function Hero() {
         {/* The scrim runs in different directions at the two sizes, because the
             picture sits in different places.
 
-            Desktop: it is a column on the right, so the fade comes in from the
-            left and gives the headline ground to stand on. It stops at 44%
-            rather than 58%; any further and it veils her face, which is the
-            half of the frame worth showing.
+            Desktop: it is a column on the right, so the fade comes in from
+            the left and gives the headline ground to stand on. It is short,
+            because the portrait was reshot on a dark sweep and now meets the
+            page on its own; a long fade would only be hiding a photograph that
+            no longer needs hiding.
 
             Mobile: it is a band across the top, so the fade runs downward and
             dissolves the bottom edge into the page. Without it the band ends on
@@ -119,17 +120,17 @@ export function Hero() {
             full-width photograph look pasted on rather than part of the page. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-b from-transparent from-22% via-canvas/55 via-72% to-canvas to-97% md:bg-gradient-to-r md:from-canvas md:from-0% md:via-canvas/35 md:via-13% md:to-transparent md:to-44%"
+          className="absolute inset-0 bg-gradient-to-b from-transparent from-22% via-canvas/55 via-72% to-canvas to-97% md:bg-gradient-to-r md:from-canvas md:from-0% md:via-canvas/30 md:via-9% md:to-transparent md:to-34%"
         />
 
         {/* Second scrim, top down, for the header rather than the headline.
-            This portrait was shot on a white sweep, so the upper right of the
-            frame is the brightest thing on the page. The nav sits on it while
-            it is still transparent, and its controls are coloured for a dark
-            ground: without this they land grey on white and all but vanish. */}
+            The nav sits over the picture while it is still transparent, and
+            its controls are coloured for a dark ground. The backdrop is dark
+            now so this is insurance rather than rescue, but the crown of her
+            hair still carries a highlight that the palette icon would sit in. */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-canvas/90 to-transparent md:h-32"
+          className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-canvas/70 to-transparent md:h-28"
         />
       </motion.div>
     </section>
