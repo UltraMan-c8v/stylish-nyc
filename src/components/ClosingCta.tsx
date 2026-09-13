@@ -23,9 +23,9 @@ export function ClosingCta() {
       <Reveal className="relative">
         <img
           src="/img/salon-interior.webp"
-          alt="The studio in the morning, empty chairs and hard diagonal daylight across a concrete floor."
-          width={2000}
-          height={1125}
+          alt="The salon floor: black leather chairs facing tall mirrors in a bright white room with pale wood floors."
+          width={1600}
+          height={1067}
           loading="lazy"
           decoding="async"
           className="h-[42vh] w-full object-cover md:h-[62vh]"
