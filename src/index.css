@@ -1,0 +1,598 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/bodoni-moda/index.css';
+@import '@fontsource-variable/geist/index.css';
+@import '@fontsource-variable/geist-mono/index.css';
+@import '@fontsource-variable/cormorant/index.css';
+
+/* ---------------------------------------------------------------------------
+   Stylish NYC design tokens
+
+   Palette is strictly achromatic. Every value below has zero saturation, so
+   the only colour on the page comes from the photography. Neither theme uses
+   pure #000 or pure #fff; both would flatten the depth the grain relies on.
+
+   Shape rule (applied everywhere, no exceptions): rectangles are sharp at 2px.
+   Circles appear only as icon wells and avatars, where the shape is the point.
+--------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   Palettes
+
+   Seven themes, switched by data-theme on <html>. Every one of them keeps the
+   photography greyscale: the monochrome imagery is the constant, and colour
+   enters only as an accent. That is what stops a gold or crimson theme from
+   fighting the pictures.
+
+   --accent carries the colour. It is used sparingly and always at a size and
+   weight where it clears WCAG AA against its own canvas: the small mono labels,
+   the cut in the hero animation, and the primary button fill.
+
+   No theme uses pure #000 or pure #fff.
+--------------------------------------------------------------------------- */
+
+/* 1. Noir. Achromatic dark, the original. */
+:root,
+[data-theme='noir'] {
+  --canvas: #0b0b0c;
+  --surface: #131315;
+  --surface-raised: #1a1a1d;
+  --text: #edede9;
+  --text-muted: #a1a1a6;
+  --text-faint: #86868c;
+  --accent: #b9b9be;
+  --line: rgb(255 255 255 / 0.11);
+  --line-strong: rgb(255 255 255 / 0.22);
+  --line-control: rgb(255 255 255 / 0.38);
+  --invert-bg: #edede9;
+  --invert-hover: #f8f8f5;
+  --invert-text: #0b0b0c;
+  --grain-opacity: 0.045;
+  --img-filter: grayscale(1) contrast(1.04) brightness(0.92);
+}
+
+/* 2. Paper. Achromatic light, the original. */
+[data-theme='paper'] {
+  --canvas: #f2f1ee;
+  --surface: #fafaf8;
+  --surface-raised: #ffffff;
+  --text: #131315;
+  --text-muted: #5a5a60;
+  --text-faint: #6b6b71;
+  --accent: #5a5a60;
+  --line: rgb(0 0 0 / 0.12);
+  --line-strong: rgb(0 0 0 / 0.24);
+  --line-control: rgb(0 0 0 / 0.45);
+  --invert-bg: #131315;
+  --invert-hover: #2c2c31;
+  --invert-text: #f2f1ee;
+  --grain-opacity: 0.03;
+  --img-filter: grayscale(1) contrast(1.02) brightness(1.02);
+}
+
+/* 3. Onyx and gold. Roman asked for gold on black. */
+[data-theme='onyx-gold'] {
+  --canvas: #0a0a0b;
+  --surface: #121211;
+  --surface-raised: #191817;
+  --text: #f0ece3;
+  --text-muted: #a9a294;
+  --text-faint: #8e8778;
+  --accent: #d8b35a;
+  --line: rgb(216 179 90 / 0.16);
+  --line-strong: rgb(216 179 90 / 0.32);
+  --line-control: rgb(216 179 90 / 0.5);
+  --invert-bg: #d8b35a;
+  --invert-hover: #e5c473;
+  --invert-text: #14100a;
+  --grain-opacity: 0.05;
+  --img-filter: grayscale(1) contrast(1.06) brightness(0.9);
+}
+
+/* 4. Onyx and crimson. Roman asked for red on black. */
+[data-theme='onyx-crimson'] {
+  --canvas: #0b0a0a;
+  --surface: #141111;
+  --surface-raised: #1c1717;
+  --text: #efeaea;
+  --text-muted: #a9a0a0;
+  --text-faint: #8d8484;
+  --accent: #e0565c;
+  --line: rgb(224 86 92 / 0.16);
+  --line-strong: rgb(224 86 92 / 0.32);
+  --line-control: rgb(224 86 92 / 0.5);
+  --invert-bg: #e0565c;
+  --invert-hover: #ea6a70;
+  --invert-text: #150809;
+  --grain-opacity: 0.05;
+  --img-filter: grayscale(1) contrast(1.06) brightness(0.9);
+}
+
+/* 5. Ivory and gold. Roman asked for gold on white. The accent has to darken
+   to an antique gold here: the bright gold that works on black falls to about
+   2:1 on ivory and fails outright. */
+[data-theme='ivory-gold'] {
+  --canvas: #f6f3ec;
+  --surface: #fdfbf6;
+  --surface-raised: #ffffff;
+  --text: #17150f;
+  --text-muted: #5c5749;
+  --text-faint: #6b6555;
+  --accent: #7a5c14;
+  --line: rgb(122 92 20 / 0.18);
+  --line-strong: rgb(122 92 20 / 0.34);
+  --line-control: rgb(122 92 20 / 0.55);
+  --invert-bg: #7a5c14;
+  --invert-hover: #8e6c19;
+  --invert-text: #fbf8f1;
+  --grain-opacity: 0.028;
+  --img-filter: grayscale(1) contrast(1.02) brightness(1.02);
+}
+
+/* 6. Forest and brass. Mine. Deep green reads expensive without going black,
+   and brass sits on it more quietly than gold sits on onyx. */
+[data-theme='forest'] {
+  --canvas: #0a1310;
+  --surface: #0f1a16;
+  --surface-raised: #14211c;
+  --text: #e9efe9;
+  --text-muted: #9aa79f;
+  --text-faint: #82908a;
+  --accent: #c6a05a;
+  --line: rgb(198 160 90 / 0.16);
+  --line-strong: rgb(198 160 90 / 0.3);
+  --line-control: rgb(198 160 90 / 0.48);
+  --invert-bg: #c6a05a;
+  --invert-hover: #d4b171;
+  --invert-text: #0b1510;
+  --grain-opacity: 0.045;
+  --img-filter: grayscale(1) contrast(1.05) brightness(0.9);
+}
+
+/* 7. Bordeaux and bone. Mine. Wine rather than black, with a dusty rose that
+   reads couture instead of Christmas. */
+[data-theme='bordeaux'] {
+  --canvas: #130a0c;
+  --surface: #1b1013;
+  --surface-raised: #231619;
+  --text: #f0e8e8;
+  --text-muted: #ab9d9e;
+  --text-faint: #8f8283;
+  --accent: #d8a2a8;
+  --line: rgb(216 162 168 / 0.16);
+  --line-strong: rgb(216 162 168 / 0.3);
+  --line-control: rgb(216 162 168 / 0.48);
+  --invert-bg: #d8a2a8;
+  --invert-hover: #e3b5ba;
+  --invert-text: #180b0e;
+  --grain-opacity: 0.045;
+  --img-filter: grayscale(1) contrast(1.05) brightness(0.9);
+}
+
+/* 8. Chalk. The #F2F0ED Roman picked, built out into a full palette. Warm
+   off-white paper, everything else achromatic so the photography still leads. */
+[data-theme='chalk'] {
+  --canvas: #f2f0ed;
+  --surface: #fafaf8;
+  --surface-raised: #ffffff;
+  --text: #1a1917;
+  --text-muted: #57554e;
+  --text-faint: #67645c;
+  --accent: #57554e;
+  --line: rgb(26 25 23 / 0.12);
+  --line-strong: rgb(26 25 23 / 0.24);
+  --line-control: rgb(26 25 23 / 0.45);
+  --invert-bg: #1a1917;
+  --invert-hover: #33312c;
+  --invert-text: #f2f0ed;
+  --grain-opacity: 0.028;
+  --img-filter: grayscale(1) contrast(1.02) brightness(1.02);
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-raised: var(--surface-raised);
+  --color-ink: var(--text);
+  --color-muted: var(--text-muted);
+  --color-faint: var(--text-faint);
+  --color-accent: var(--accent);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-control: var(--line-control);
+  --color-invert: var(--invert-bg);
+  --color-invert-hover: var(--invert-hover);
+  --color-on-invert: var(--invert-text);
+
+  --font-display: 'Bodoni Moda Variable', 'Bodoni Moda', Georgia, serif;
+  --font-sans: 'Geist Variable', 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, monospace;
+  /* Concept page only. Cormorant carries a true 300, which Bodoni Moda does
+     not, and the reference masthead lives on that hairline weight. */
+  --font-concept: 'Cormorant Variable', 'Cormorant', 'Bodoni Moda Variable', Georgia, serif;
+
+  --radius-edge: 2px;
+
+  /* Custom curves. The built-in CSS easings are too weak to read as intentional. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@layer base {
+  * {
+    min-width: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Theme swap. Scoped to the properties that actually change so the browser
+     is not asked to interpolate transform or layout during the switch. */
+  body,
+  [data-surface] {
+    transition:
+      background-color 420ms var(--ease-out),
+      border-color 420ms var(--ease-out),
+      color 420ms var(--ease-out);
+  }
+
+  /* Anchor targets clear the fixed header. Without this, every nav link
+     drops the section heading underneath the bar. */
+  :target,
+  section[id],
+  [id='top'] {
+    scroll-margin-top: 6.5rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--invert-bg);
+    color: var(--invert-text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  img {
+    filter: var(--img-filter);
+  }
+
+  /* Native controls follow the theme (scrollbars, form widgets, autofill). */
+  [data-theme='paper'],
+  [data-theme='chalk'],
+  [data-theme='ivory-gold'] {
+    color-scheme: light;
+  }
+  [data-theme='noir'],
+  [data-theme='onyx-gold'],
+  [data-theme='onyx-crimson'],
+  [data-theme='forest'],
+  [data-theme='bordeaux'] {
+    color-scheme: dark;
+  }
+}
+
+@layer components {
+  .measure {
+    max-width: 62ch;
+  }
+
+  .shell {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .shell {
+      padding-inline: 4rem;
+    }
+  }
+
+  /* Hairline rule used instead of card chrome wherever grouping is enough. */
+  .rule {
+    border-top: 1px solid var(--line);
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Gallery photographs.
+   Roman's pictures ship in colour and are desaturated here, not in the file,
+   which is why the import script no longer bakes greyscale. Hovering restores
+   them: the one place on the site where the monochrome discipline breaks on
+   purpose, because the work is the exception.
+
+   The resting state reuses --img-filter rather than restating a grey, so each
+   palette keeps its own contrast and brightness calibration instead of the
+   gallery drifting away from every other image on the page.
+
+   Filter only, no other property, so it composites on the GPU. The scale on
+   the inner image is a separate transform and the two do not fight. */
+.shot img {
+  filter: var(--img-filter);
+  transition: filter 600ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.shot:hover img,
+.shot:focus-visible img {
+  filter: none;
+}
+
+/* Opened from the grid, a photograph is shown as it was taken. Hover is the
+   preview of the colour; the lightbox is the whole of it. */
+.shot-full,
+.shot-full img,
+.shot-full video {
+  filter: none;
+}
+
+/* Google Maps embed. Same idiom as the gallery: desaturated to sit inside a
+   monochrome page, real colour on hover.
+
+   Dark palettes invert it as well. Google serves one light map whatever the
+   page around it, and an untouched white panel in a black layout is the
+   brightest thing on the screen: it reads as a hole punched through the page
+   rather than as part of it. */
+.map-frame iframe {
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 600ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.map-frame:hover iframe,
+.map-frame:focus-within iframe {
+  filter: grayscale(0) contrast(1);
+}
+
+[data-theme='noir'] .map-frame iframe,
+[data-theme='onyx-gold'] .map-frame iframe,
+[data-theme='onyx-crimson'] .map-frame iframe,
+[data-theme='forest'] .map-frame iframe,
+[data-theme='bordeaux'] .map-frame iframe {
+  filter: grayscale(1) invert(1) contrast(0.86) brightness(0.94);
+}
+
+[data-theme='noir'] .map-frame:hover iframe,
+[data-theme='noir'] .map-frame:focus-within iframe,
+[data-theme='onyx-gold'] .map-frame:hover iframe,
+[data-theme='onyx-gold'] .map-frame:focus-within iframe,
+[data-theme='onyx-crimson'] .map-frame:hover iframe,
+[data-theme='onyx-crimson'] .map-frame:focus-within iframe,
+[data-theme='forest'] .map-frame:hover iframe,
+[data-theme='forest'] .map-frame:focus-within iframe,
+[data-theme='bordeaux'] .map-frame:hover iframe,
+[data-theme='bordeaux'] .map-frame:focus-within iframe {
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot img,
+  .map-frame iframe {
+    transition: none;
+  }
+}
+
+/* Concept hero photograph.
+   The horizontal feather only makes sense in the desktop composition, where
+   the picture sits beside the type. On mobile the layout stacks and the image
+   has its own band, so a left-edge fade would just eat the frame. */
+@media (min-width: 768px) {
+  .concept-photo {
+    mask-image: linear-gradient(90deg, transparent 2%, #000 30%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 2%, #000 30%);
+  }
+}
+
+/* Lenis. Its own scrolling replaces the native one, so the smooth
+   scroll-behaviour above has to stand down or the two fight each other and
+   anchor jumps stutter. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Fixed, pointer-events-none grain. Never attached to a scrolling container:
+   that would force a continuous GPU repaint and destroy mobile frame rate. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Circular wipe from the toggle. Progressive: browsers without View
+   Transitions get an instant swap plus the colour transition above. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Call dialog.
+   Centred and scaled from centre, which is right for a modal: it is not
+   anchored to a trigger, so scaling from one would read as arbitrary. Starts
+   at 0.96 rather than 0, because nothing in the real world appears from
+   nothing. `allow-discrete` is what lets display and overlay participate, so
+   the close animation runs instead of the element vanishing on frame one. */
+.call-dialog {
+  margin: auto;
+  opacity: 0;
+  transform: scale(0.96) translateY(6px);
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 220ms var(--ease-out),
+    overlay 220ms allow-discrete,
+    display 220ms allow-discrete;
+}
+
+.call-dialog[open] {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  .call-dialog[open] {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+}
+
+.call-dialog::backdrop {
+  background: rgb(4 4 5 / 0);
+  backdrop-filter: blur(2px);
+  transition:
+    background 220ms var(--ease-out),
+    overlay 220ms allow-discrete,
+    display 220ms allow-discrete;
+}
+
+.call-dialog[open]::backdrop {
+  background: rgb(4 4 5 / 0.62);
+}
+
+/* The gallery lightbox takes the whole viewport and shows photographs in full
+   colour, so it needs a heavier ground than the call card does: at 0.62 the
+   page behind stays legible and competes with the picture. */
+.lightbox::backdrop {
+  backdrop-filter: blur(10px);
+}
+.lightbox[open]::backdrop {
+  background: rgb(4 4 5 / 0.9);
+}
+
+/* The lightbox is always dark, whatever the page behind it is set to. Its
+   chrome therefore cannot use the theme tokens: on paper, chalk or ivory
+   --text is near black, and a caption in it lands invisible on the near-black
+   backdrop. These are fixed light values, and the ratios against rgb(4 4 5)
+   are 17.5, 8.0 and 5.7. */
+.lightbox {
+  color-scheme: dark;
+}
+
+.lightbox-title {
+  color: #f4f2f0;
+}
+
+.lightbox-note {
+  color: rgb(244 242 240 / 0.72);
+}
+
+.lightbox-meta {
+  color: rgb(244 242 240 / 0.55);
+}
+
+.lightbox-control {
+  color: #f4f2f0;
+  background: rgb(10 10 12 / 0.55);
+  border-color: rgb(244 242 240 / 0.24);
+  backdrop-filter: blur(8px);
+  transition: border-color 200ms var(--ease-out);
+}
+
+.lightbox-control:hover {
+  border-color: rgb(244 242 240 / 0.7);
+}
+
+@starting-style {
+  .call-dialog[open]::backdrop {
+    background: rgb(4 4 5 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .call-dialog,
+  .call-dialog::backdrop {
+    transition: none;
+  }
+}

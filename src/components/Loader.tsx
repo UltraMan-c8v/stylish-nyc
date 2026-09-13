@@ -1,0 +1,92 @@
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+
+/**
+ * Entrance curtain. The crest fills left to right, then the whole panel swipes
+ * up off the top to hand over to the page.
+ *
+ * Shared by the main site and the concept page. Colours default to the theme
+ * tokens, so on the main site the curtain is whatever palette is active; the
+ * concept page passes its own fixed pair.
+ *
+ * Under one second end to end, which is the ceiling for anything standing
+ * between a visitor and the content. The fill runs 620ms and the swipe 620ms,
+ * overlapping, so the panel is gone at about 950ms.
+ *
+ * The fill is two copies of the crest stacked: a dim one always visible, and a
+ * bright one clipped by an inset that opens from the left. Animating the clip
+ * rather than a width keeps the mark's geometry fixed, so the lion does not
+ * stretch as it fills.
+ *
+ * It renders nothing at all under prefers-reduced-motion, and it never blocks
+ * the page underneath: the page is already mounted and painted behind it.
+ */
+
+const CREST_FILL = 0.62
+const HOLD = 0.12
+
+export function Loader({
+  ink = 'var(--text)',
+  plate = 'var(--canvas)',
+}: {
+  /** Defaults follow the active theme, so the main site needs no arguments. */
+  ink?: string
+  plate?: string
+} = {}) {
+  const reduce = useReducedMotion()
+  const [done, setDone] = useState(reduce)
+
+  useEffect(() => {
+    if (reduce) return
+    const t = setTimeout(() => setDone(true), (CREST_FILL + HOLD) * 1000)
+    return () => clearTimeout(t)
+  }, [reduce])
+
+  const crest = {
+    maskImage: 'url(/logo-mark.svg)',
+    WebkitMaskImage: 'url(/logo-mark.svg)',
+    maskRepeat: 'no-repeat',
+    WebkitMaskRepeat: 'no-repeat',
+    maskPosition: 'center',
+    WebkitMaskPosition: 'center',
+    maskSize: 'contain',
+    WebkitMaskSize: 'contain',
+  } as const
+
+  if (reduce) return null
+
+  return (
+    <AnimatePresence>
+      {!done && (
+        <motion.div
+          className="fixed inset-0 z-[100] flex items-center justify-center"
+          style={{ background: plate }}
+          initial={{ y: 0 }}
+          exit={{ y: '-100%' }}
+          transition={{ duration: 0.62, ease: [0.76, 0, 0.24, 1] }}
+        >
+          <div className="relative size-16 md:size-20">
+            {/* Ghost of the mark, so something is present from frame one. */}
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 block opacity-25"
+              style={{ ...crest, background: ink }}
+            />
+
+            {/* The fill, opening left to right. */}
+            <motion.span
+              aria-hidden="true"
+              className="absolute inset-0 block"
+              style={{ ...crest, background: ink }}
+              initial={{ clipPath: 'inset(0 100% 0 0)' }}
+              animate={{ clipPath: 'inset(0 0% 0 0)' }}
+              transition={{ duration: CREST_FILL, ease: [0.65, 0, 0.35, 1] }}
+            />
+          </div>
+
+          <span className="sr-only">Loading</span>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}

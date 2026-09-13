@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# The alternate design of the same salon. Crawlable, deliberately not indexed,
+# so it cannot compete with the real landing page in search results.
+Disallow: /concept/
+
+Sitemap: https://stylishnyc.com/sitemap.xml
