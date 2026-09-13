@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="noir">
+<html lang="en" data-theme="onyx-crimson">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,7 +35,6 @@
       (function () {
         var VALID = [
           'noir',
-          'paper',
           'chalk',
           'onyx-gold',
           'onyx-crimson',
@@ -43,14 +42,17 @@
           'forest',
           'bordeaux',
         ]
+        // Rouge unless the visitor has chosen otherwise before. Deliberately
+        // not keyed off prefers-color-scheme: the palette is the salon's brand
+        // decision, and opening pale on a light-mode laptop would show half of
+        // all visitors a different business. The picker in the nav overrides it
+        // and the choice is remembered.
         try {
           var stored = localStorage.getItem('snyc-theme')
-          var theme = VALID.indexOf(stored) > -1
-            ? stored
-            : window.matchMedia('(prefers-color-scheme: light)').matches ? 'paper' : 'noir'
+          var theme = VALID.indexOf(stored) > -1 ? stored : 'onyx-crimson'
           document.documentElement.setAttribute('data-theme', theme)
         } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'noir')
+          document.documentElement.setAttribute('data-theme', 'onyx-crimson')
         }
       })()
     </script>

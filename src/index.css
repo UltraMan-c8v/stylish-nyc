@@ -31,7 +31,7 @@
    No theme uses pure #000 or pure #fff.
 --------------------------------------------------------------------------- */
 
-/* 1. Noir. Achromatic dark, the original. */
+/* Noir. Achromatic dark, the original. */
 :root,
 [data-theme='noir'] {
   --canvas: #0b0b0c;
@@ -51,26 +51,7 @@
   --img-filter: grayscale(1) contrast(1.04) brightness(0.92);
 }
 
-/* 2. Paper. Achromatic light, the original. */
-[data-theme='paper'] {
-  --canvas: #f2f1ee;
-  --surface: #fafaf8;
-  --surface-raised: #ffffff;
-  --text: #131315;
-  --text-muted: #5a5a60;
-  --text-faint: #6b6b71;
-  --accent: #5a5a60;
-  --line: rgb(0 0 0 / 0.12);
-  --line-strong: rgb(0 0 0 / 0.24);
-  --line-control: rgb(0 0 0 / 0.45);
-  --invert-bg: #131315;
-  --invert-hover: #2c2c31;
-  --invert-text: #f2f1ee;
-  --grain-opacity: 0.03;
-  --img-filter: grayscale(1) contrast(1.02) brightness(1.02);
-}
-
-/* 3. Onyx and gold. Roman asked for gold on black. */
+/* Onyx and gold. Roman asked for gold on black. */
 [data-theme='onyx-gold'] {
   --canvas: #0a0a0b;
   --surface: #121211;
@@ -89,7 +70,7 @@
   --img-filter: grayscale(1) contrast(1.06) brightness(0.9);
 }
 
-/* 4. Onyx and crimson. Roman asked for red on black. */
+/* Onyx and crimson. Roman asked for red on black. */
 [data-theme='onyx-crimson'] {
   --canvas: #0b0a0a;
   --surface: #141111;
@@ -108,7 +89,7 @@
   --img-filter: grayscale(1) contrast(1.06) brightness(0.9);
 }
 
-/* 5. Ivory and gold. Roman asked for gold on white. The accent has to darken
+/* Ivory and gold. Roman asked for gold on white. The accent has to darken
    to an antique gold here: the bright gold that works on black falls to about
    2:1 on ivory and fails outright. */
 [data-theme='ivory-gold'] {
@@ -129,7 +110,7 @@
   --img-filter: grayscale(1) contrast(1.02) brightness(1.02);
 }
 
-/* 6. Forest and brass. Mine. Deep green reads expensive without going black,
+/* Forest and brass. Mine. Deep green reads expensive without going black,
    and brass sits on it more quietly than gold sits on onyx. */
 [data-theme='forest'] {
   --canvas: #0a1310;
@@ -149,7 +130,7 @@
   --img-filter: grayscale(1) contrast(1.05) brightness(0.9);
 }
 
-/* 7. Bordeaux and bone. Mine. Wine rather than black, with a dusty rose that
+/* Bordeaux and bone. Mine. Wine rather than black, with a dusty rose that
    reads couture instead of Christmas. */
 [data-theme='bordeaux'] {
   --canvas: #130a0c;
@@ -169,7 +150,7 @@
   --img-filter: grayscale(1) contrast(1.05) brightness(0.9);
 }
 
-/* 8. Chalk. The #F2F0ED Roman picked, built out into a full palette. Warm
+/* Chalk. The #F2F0ED Roman picked, built out into a full palette. Warm
    off-white paper, everything else achromatic so the photography still leads. */
 [data-theme='chalk'] {
   --canvas: #f2f0ed;
@@ -294,7 +275,6 @@
   }
 
   /* Native controls follow the theme (scrollbars, form widgets, autofill). */
-  [data-theme='paper'],
   [data-theme='chalk'],
   [data-theme='ivory-gold'] {
     color-scheme: light;
@@ -552,7 +532,7 @@ html.lenis body {
 }
 
 /* The lightbox is always dark, whatever the page behind it is set to. Its
-   chrome therefore cannot use the theme tokens: on paper, chalk or ivory
+   chrome therefore cannot use the theme tokens: on linen or champagne
    --text is near black, and a caption in it lands invisible on the near-black
    backdrop. These are fixed light values, and the ratios against rgb(4 4 5)
    are 17.5, 8.0 and 5.7. */
