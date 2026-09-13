@@ -45,8 +45,9 @@ export function PricesPage() {
               Prices
             </h1>
             <p className="measure mt-6 text-[1.0625rem] text-muted">
-              Starting prices in US dollars. Colour is quoted at consultation, because the number
-              depends on your hair rather than on the name of the service.
+              Starting prices in US dollars. Colour and anything longer is confirmed at
+              consultation, because the final figure depends on your hair rather than on the
+              name of the service.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3">

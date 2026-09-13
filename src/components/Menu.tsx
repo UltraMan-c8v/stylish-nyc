@@ -27,8 +27,9 @@ export function Menu() {
         <Reveal className="max-w-3xl">
           <RollingHeading className="font-display text-[clamp(2.25rem,5vw,4rem)]">Prices</RollingHeading>
           <p className="measure mt-5 text-muted">
-            Starting prices in US dollars. Colour is quoted at consultation, because the number
-            depends on your hair rather than on the service name.
+            Starting prices in US dollars. Colour and anything longer is confirmed at
+            consultation, because the final figure depends on your hair rather than on the
+            service name.
           </p>
         </Reveal>
 

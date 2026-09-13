@@ -207,22 +207,22 @@ export const voices = [
  * Haircut is the exception. He gave his own figures for that, $150 starting
  * and $250 below the shoulders, which override the $200 on Antonio list.
  *
- * NOTE: Antonio published list carries no colour pricing, so there is none
- * here. Roman biography is largely about colour work, so this is the one
- * obvious hole in the menu. Worth asking him for it.
+ * Colour pricing came from Roman directly, later than the rest, and is his own
+ * rather than Antonio's list plus ten. Makeup came off at the same time.
  */
 export const menu = [
   {
     group: 'Cutting',
     items: [
       { name: 'Haircut', price: 'from 150' },
-      { name: 'Haircut, below the shoulders', price: '250' },
+      { name: 'Haircut, below the shoulders', price: 'from 200 to 250' },
+      { name: 'Curly hair cut', price: '240' },
     ],
   },
   {
     group: 'Styling',
     items: [
-      { name: 'Glam blowdry', price: '160' },
+      { name: 'Glam blowdry', price: '140' },
       { name: 'Glam curl', price: '185' },
       { name: 'Glam waves', price: '185' },
       { name: 'Glam straight', price: '185' },
@@ -230,11 +230,17 @@ export const menu = [
     ],
   },
   {
-    group: 'Extensions and makeup',
+    group: 'Colour',
     items: [
-      { name: 'Clip-on Remy extensions', price: '710' },
-      { name: 'Makeup', price: '210 to 235' },
+      { name: 'Single process', price: '150' },
+      { name: 'Full head single process', price: '200' },
+      { name: 'Highlights and balayage', price: 'from 300 to 500' },
+      { name: 'Grey blending', price: 'from 200' },
     ],
+  },
+  {
+    group: 'Extensions',
+    items: [{ name: 'Clip-on Remy extensions', price: '710' }],
   },
 ] as const
 
