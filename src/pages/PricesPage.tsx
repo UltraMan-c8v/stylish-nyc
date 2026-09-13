@@ -4,14 +4,14 @@ import { Footer } from '../components/Footer'
 import { Reveal } from '../components/Reveal'
 import { CallLink } from '../components/CallLink'
 import { StudioInfo } from '../components/StudioInfo'
-import { cancellation, maps, menu, salon } from '../data/content'
+import { maps, menu, salon } from '../data/content'
 
 /**
  * /prices/ - the full price list.
  *
  * The landing page keeps its own three-column summary; this is the version you
  * arrive at from the nav, with room for the things that do not belong on a
- * landing page: the cancellation terms and the map.
+ * landing page: the hours and the map.
  *
  * Each group is a 12-column row with the group name held in the left margin
  * and the lines set against it, which is how a printed menu is set. A leader
@@ -85,29 +85,6 @@ export function PricesPage() {
               </section>
             </Reveal>
           ))}
-        </div>
-
-        {/* Cancellation terms. On the price page rather than buried in the
-            legal pages, because it is the part that costs money. */}
-        <div className="shell mt-6 md:mt-12">
-          <Reveal>
-            <section className="grid gap-x-10 gap-y-7 border-t border-line-strong py-10 md:grid-cols-12 md:py-14">
-              <h2 className="font-mono text-[0.6875rem] tracking-[0.16em] text-accent uppercase md:col-span-3">
-                {cancellation.title}
-              </h2>
-
-              <ul className="space-y-5 md:col-span-8 md:col-start-5">
-                {cancellation.points.map((point, i) => (
-                  <li key={point} className="flex gap-5 text-[1.0625rem] text-muted">
-                    <span className="mt-1 font-mono text-sm tabular-nums text-faint">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="measure">{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </Reveal>
         </div>
 
         {/* Where it is. The map is a full-width band rather than a card: it is

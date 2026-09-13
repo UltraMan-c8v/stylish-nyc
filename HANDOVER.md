@@ -94,6 +94,11 @@ the effective date, the cancellation window, and your hosting and email
 providers. **Have a lawyer read both pages before relying on them.** They were
 written as a starting point, not as legal advice.
 
+The terms still ask clients for notice before cancelling. That is worth keeping
+even though the site no longer publishes a full cancellation policy: the policy
+came down because you do not currently take a card from new clients, and a
+stated rule you do not enforce is worse than no rule at all.
+
 ---
 
 ## Renewals, so nothing disappears
@@ -140,7 +145,7 @@ src/data/content.ts     prices, hours, address, phone, bio, gallery, reviews
 src/data/legal.ts       terms and privacy text
 src/pages/              one file per page
 src/components/         the pieces each page is built from
-src/index.css           the eight colour palettes
+src/index.css           the seven colour palettes
 public/img/             every photograph on the site
 public/video/           the film
 _source-images/         untouched originals, never published. Keep a copy.

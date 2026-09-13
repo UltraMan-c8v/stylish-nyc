@@ -13,8 +13,8 @@ import { RollingHeading } from './RollingHeading'
  * is placed against each figure here instead of being prefixed blindly.
  *
  * This is the summary. /prices/ carries the same list set larger, plus the
- * cancellation terms and the map, which are the things somebody looks up
- * deliberately rather than meets while scrolling.
+ * hours and the map, which are the things somebody looks up deliberately
+ * rather than meets while scrolling.
  */
 function formatPrice(price: string) {
   return price.replace(/\d[\d,]*/g, (n) => `$${n}`)
@@ -58,7 +58,7 @@ export function Menu() {
             href="/prices/"
             className="group mt-14 inline-flex items-center gap-3 border-t border-line-strong pt-5 text-[0.9375rem] text-ink md:mt-20"
           >
-            Full price list, hours and cancellation policy
+            Full price list, hours and directions
             <ArrowRight
               size={16}
               weight="light"

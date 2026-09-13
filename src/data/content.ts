@@ -398,22 +398,6 @@ export const galleryFilm = {
 } as const
 
 /**
- * REAL. Cancellation policy, exactly as Roman gave it.
- *
- * The card-on-file line describes something the site cannot currently do:
- * there is no booking flow, so the card is taken by phone. Worth restating
- * that here if online booking is ever built.
- */
-export const cancellation = {
-  title: 'Cancellation policy',
-  points: [
-    'All new clients require a credit card for their first appointment.',
-    'We require 24 hours notice for all cancellations and appointment changes.',
-    'No-shows are subject to a 100% service charge. Late cancellations are subject to a 50% charge.',
-  ],
-} as const
-
-/**
  * Google Maps embed.
  *
  * The keyless `output=embed` form rather than the Embed API: it needs no key,

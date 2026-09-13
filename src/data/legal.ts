@@ -27,7 +27,15 @@ const ENTITY = 'Stylish NYC'
 /** PLACEHOLDER. Set to the date you actually publish. */
 const UPDATED = 'Not yet published'
 
-/** PLACEHOLDER. Replace with the real cancellation window. */
+/**
+ * PLACEHOLDER. Replace with the real cancellation window.
+ *
+ * The prices page used to carry a fuller policy, including a line about taking
+ * a card from new clients. That came down because the salon does not currently
+ * hold cards, and a stated policy that is not enforced is worse than none. This
+ * clause stays: asking for notice is reasonable regardless, and it never
+ * claimed a card was on file.
+ */
 const CANCELLATION_WINDOW = '24 hours'
 
 export const terms: LegalDoc = {
