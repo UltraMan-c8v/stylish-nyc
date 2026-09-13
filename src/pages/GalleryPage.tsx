@@ -219,7 +219,7 @@ export function GalleryPage() {
                 <button
                   type="button"
                   onClick={() => open(FILM_AT)}
-                  aria-label={`${galleryFilm.caption}. Play the film`}
+                  aria-label={`${galleryFilm.eyebrow}: ${galleryFilm.caption}. Play the video`}
                   className="shot group block w-full cursor-pointer text-left"
                 >
                   <span className="relative block overflow-hidden rounded-[2px] bg-surface">
@@ -246,7 +246,7 @@ export function GalleryPage() {
             <div className="md:col-span-6 md:col-start-7 md:self-center">
               <Reveal delay={0.08}>
                 <p className="font-mono text-[0.6875rem] tracking-[0.16em] text-accent uppercase">
-                  Film
+                  {galleryFilm.eyebrow}
                 </p>
                 <h2 className="mt-5 font-display text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.05] tracking-[-0.02em]">
                   {galleryFilm.caption}

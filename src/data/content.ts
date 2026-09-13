@@ -383,7 +383,7 @@ export const makeovers = [
 export const MAKEOVERS_CREDIT = 'Antonio Prieto Salon'
 
 /**
- * The film Roman asked for.
+ * The product film Roman asked for, presented as a monthly feature.
  *
  * NOTE: this is a Kerastase Elixir Ultime brand commercial, not footage of his
  * own work, so the caption says so rather than implying the salon shot it.
@@ -391,10 +391,16 @@ export const MAKEOVERS_CREDIT = 'Antonio Prieto Salon'
  * usually given these as stockists, but "usually" is not the same as "yes".
  */
 export const galleryFilm = {
+  /**
+   * The eyebrow says "this month", which is a promise with a clock on it. If
+   * the product is never swapped, change this line to something timeless
+   * rather than leaving a stale month sitting on the page.
+   */
+  eyebrow: 'This month’s product of choice',
   src: '/video/film-elixir.mp4',
   poster: '/img/film-elixir-poster.webp',
   caption: 'Kerastase Elixir Ultime',
-  note: 'The Elixir Ultime film. Kerastase is the finishing oil used in the studio, and it is what most of the shine in these pictures is doing.',
+  note: 'The finishing oil used in the studio, and what most of the shine in these pictures is doing. A few drops through damp mid-lengths, never the roots.',
 } as const
 
 /**
