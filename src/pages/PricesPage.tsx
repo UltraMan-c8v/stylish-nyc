@@ -44,13 +44,7 @@ export function PricesPage() {
             <h1 className="mt-8 font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.94] tracking-[-0.03em]">
               Prices
             </h1>
-            <p className="measure mt-6 text-[1.0625rem] text-muted">
-              Starting prices in US dollars. Colour and anything longer is confirmed at
-              consultation, because the final figure depends on your hair rather than on the
-              name of the service.
-            </p>
-
-            <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
               <CallLink withArrow />
               <p className="text-sm text-faint">Booking is by phone. Online booking coming soon.</p>
             </div>

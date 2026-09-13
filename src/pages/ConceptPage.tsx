@@ -340,7 +340,7 @@ export function ConceptPage() {
             },
             {
               src: '/img/salon-interior.webp',
-              alt: 'The studio in the morning.',
+              alt: 'A dark salon wall of backlit light bars and illuminated mirrors.',
               label: 'The room',
               span: 'aspect-4/3',
               dir: 'up',
