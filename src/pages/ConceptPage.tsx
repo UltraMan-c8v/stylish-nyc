@@ -333,7 +333,7 @@ export function ConceptPage() {
             },
             {
               src: '/img/chair-mirror.webp',
-              alt: 'An empty styling chair facing a tall mirror.',
+              alt: 'Black salon chairs facing backlit mirrors.',
               label: 'Chelsea',
               span: 'aspect-4/3',
               dir: 'left',

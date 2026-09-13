@@ -23,9 +23,9 @@ export function Visit() {
               <div className="overflow-hidden rounded-[2px] bg-canvas">
                 <img
                   src="/img/chair-mirror.webp"
-                  alt="A single empty matte black salon chair facing a tall mirror, with afternoon light across the floor."
-                  width={2000}
-                  height={1125}
+                  alt="A row of black salon chairs facing backlit mirrors along a dark wall."
+                  width={900}
+                  height={873}
                   loading="lazy"
                   decoding="async"
                   className="aspect-4/3 w-full object-cover md:aspect-3/4"
