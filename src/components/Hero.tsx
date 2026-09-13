@@ -118,9 +118,18 @@ export function Hero() {
             dissolves the bottom edge into the page. Without it the band ends on
             a hard horizontal line, which is the single thing that makes a
             full-width photograph look pasted on rather than part of the page. */}
+        {/* The scrim bleeds a few pixels past the bottom of the band on
+            mobile, and reaches solid canvas well before it gets there.
+
+            54vh rarely lands on a whole pixel. When it does not, the browser
+            leaves a hairline row at the boundary that belongs to neither the
+            image nor the page, and against a near-black background that row
+            reads as a visible seam. Ending the gradient at 88% means the last
+            eighth of the band is already page colour, and -bottom-3 carries it
+            past the edge so there is no boundary left to catch the light. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-b from-transparent from-22% via-canvas/55 via-72% to-canvas to-97% md:bg-gradient-to-r md:from-canvas md:from-0% md:via-canvas/30 md:via-9% md:to-transparent md:to-34%"
+          className="absolute inset-x-0 top-0 -bottom-3 bg-gradient-to-b from-transparent from-22% via-canvas/55 via-70% to-canvas to-88% md:inset-0 md:bg-gradient-to-r md:from-canvas md:from-0% md:via-canvas/30 md:via-9% md:to-transparent md:to-34%"
         />
 
         {/* Second scrim, top down, for the header rather than the headline.
