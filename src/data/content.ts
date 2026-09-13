@@ -134,7 +134,7 @@ export const services = [
  */
 export const owner = {
   name: 'Roman Miyerov',
-  role: 'Owner',
+  role: 'Founder',
   since: 'Third generation hairstylist',
   bio: [
     'Roman Miyerov is a third generation European hairstylist. He has worked in the top salons in New York City, including Dop Dop, The Salon Project, DevaCurl and The Red Door by Elizabeth Arden.',

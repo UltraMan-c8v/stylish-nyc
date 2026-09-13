@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { Crest } from './Crest'
 
 /**
  * Entrance curtain. The crest fills left to right, then the whole panel swipes
@@ -14,9 +15,9 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
  * overlapping, so the panel is gone at about 950ms.
  *
  * The fill is two copies of the crest stacked: a dim one always visible, and a
- * bright one clipped by an inset that opens from the left. Animating the clip
- * rather than a width keeps the mark's geometry fixed, so the lion does not
- * stretch as it fills.
+ * full-strength one clipped by an inset that opens from the left. Animating
+ * the clip rather than a width keeps the mark's geometry fixed, so the lion
+ * does not stretch as it fills.
  *
  * It renders nothing at all under prefers-reduced-motion, and it never blocks
  * the page underneath: the page is already mounted and painted behind it.
@@ -26,12 +27,16 @@ const CREST_FILL = 0.62
 const HOLD = 0.12
 
 export function Loader({
-  ink = 'var(--text)',
   plate = 'var(--canvas)',
+  crest,
 }: {
   /** Defaults follow the active theme, so the main site needs no arguments. */
-  ink?: string
   plate?: string
+  /**
+   * Pin the crest polarity. Only the concept page needs it: it paints its own
+   * colours inline and carries no data-theme for the crest to read.
+   */
+  crest?: 'light' | 'dark'
 } = {}) {
   const reduce = useReducedMotion()
   const [done, setDone] = useState(reduce)
@@ -41,17 +46,6 @@ export function Loader({
     const t = setTimeout(() => setDone(true), (CREST_FILL + HOLD) * 1000)
     return () => clearTimeout(t)
   }, [reduce])
-
-  const crest = {
-    maskImage: 'url(/logo-mark.svg)',
-    WebkitMaskImage: 'url(/logo-mark.svg)',
-    maskRepeat: 'no-repeat',
-    WebkitMaskRepeat: 'no-repeat',
-    maskPosition: 'center',
-    WebkitMaskPosition: 'center',
-    maskSize: 'contain',
-    WebkitMaskSize: 'contain',
-  } as const
 
   if (reduce) return null
 
@@ -67,21 +61,21 @@ export function Loader({
         >
           <div className="relative size-16 md:size-20">
             {/* Ghost of the mark, so something is present from frame one. */}
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 block opacity-25"
-              style={{ ...crest, background: ink }}
-            />
+            <Crest className="absolute inset-0 opacity-25" force={crest} />
 
-            {/* The fill, opening left to right. */}
+            {/* The fill, opening left to right. The clip sits on a wrapper
+                rather than on the crest, because the crest may be an image and
+                an image cannot carry both the clip and its own object-fit
+                without one fighting the other. */}
             <motion.span
               aria-hidden="true"
               className="absolute inset-0 block"
-              style={{ ...crest, background: ink }}
               initial={{ clipPath: 'inset(0 100% 0 0)' }}
               animate={{ clipPath: 'inset(0 0% 0 0)' }}
               transition={{ duration: CREST_FILL, ease: [0.65, 0, 0.35, 1] }}
-            />
+            >
+              <Crest className="size-full" force={crest} />
+            </motion.span>
           </div>
 
           <span className="sr-only">Loading</span>

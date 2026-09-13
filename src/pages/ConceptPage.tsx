@@ -266,7 +266,7 @@ function Services({
 export function ConceptPage() {
   return (
     <div style={{ background: OXBLOOD }}>
-      <Loader ink={INK} plate={OXBLOOD} />
+      <Loader plate={OXBLOOD} crest="light" />
 
       <a
         href="/"

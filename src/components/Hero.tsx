@@ -97,18 +97,28 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-[46vh] md:inset-y-0 md:left-auto md:h-auto md:w-[46vw] lg:w-[42vw]"
       >
         <img
-          src="/img/hero-portrait.webp"
-          alt="A glossy chin length bob lit by a single hard window light, shot in black and white."
-          width={1500}
+          src="/img/hero-editorial.webp"
+          alt="An editorial studio portrait: dark hair rolled up into height at the crown and swept back, in a metallic dress."
+          width={1334}
           height={2000}
           fetchPriority="high"
           decoding="async"
-          className="size-full object-cover object-[50%_28%] md:object-center"
+          className="size-full object-cover object-[54%_16%] md:object-[58%_20%]"
         />
         {/* Gradient scrim so the type stays legible where it overlaps. */}
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-gradient-to-b from-canvas from-0% via-canvas/45 via-30% to-transparent to-72% md:bg-gradient-to-r md:from-canvas md:from-0% md:via-canvas/40 md:via-22% md:to-transparent md:to-58%"
+        />
+
+        {/* Second scrim, top down, for the header rather than the headline.
+            This portrait was shot on a white sweep, so the upper right of the
+            frame is the brightest thing on the page. The nav sits on it while
+            it is still transparent, and its controls are coloured for a dark
+            ground: without this they land grey on white and all but vanish. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-canvas/90 to-transparent md:h-32"
         />
       </motion.div>
     </section>

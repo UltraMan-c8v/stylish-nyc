@@ -16,9 +16,17 @@ const base =
   'active:scale-[0.98] cursor-pointer select-none ' +
   'motion-reduce:transition-none motion-reduce:active:scale-100'
 
+/**
+ * Padding depends on whether the arrow well is there.
+ *
+ * The well is a 32px circle inset against the right edge, and it supplies its
+ * own optical padding, so a button carrying one wants far less padding on that
+ * side than on the other. Applying that asymmetry to a plain text button, which
+ * is what used to happen, just pushed the label 16px left of centre.
+ */
 const sizes = {
-  md: 'h-11 pl-6 pr-2',
-  sm: 'h-9 px-4',
+  md: { plain: 'h-11 px-6', arrow: 'h-11 pl-6 pr-2' },
+  sm: { plain: 'h-9 px-4', arrow: 'h-9 pl-4 pr-1.5' },
 }
 
 type Variant = 'primary' | 'ghost'
@@ -73,7 +81,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`${base} ${sizes[size]} ${variants[variant]} ${className}`}
+      className={`${base} ${sizes[size][withArrow ? 'arrow' : 'plain']} ${variants[variant]} ${className}`}
       {...rest}
     >
       <span>{children}</span>
@@ -91,7 +99,10 @@ export function ButtonLink({
   ...rest
 }: LinkProps) {
   return (
-    <a className={`${base} ${sizes[size]} ${variants[variant]} ${className}`} {...rest}>
+    <a
+      className={`${base} ${sizes[size][withArrow ? 'arrow' : 'plain']} ${variants[variant]} ${className}`}
+      {...rest}
+    >
       <span>{children}</span>
       {withArrow && <ArrowWell />}
     </a>

@@ -326,6 +326,32 @@
   }
 }
 
+/* Roman's original crest, shipped in both polarities.
+   Only two palettes are light, so the swap is a short list rather than a
+   media query, and it keys off data-theme like everything else here.
+
+   filter: none is load-bearing. The global rule desaturates and re-tunes the
+   brightness of every img on the page, which is right for photographs and
+   wrong for a logo: on the darker palettes it was dimming the white crest to a
+   grey one. */
+.crest-img {
+  filter: none;
+}
+
+.crest-on-light {
+  display: none;
+}
+
+[data-theme='chalk'] .crest-on-light,
+[data-theme='ivory-gold'] .crest-on-light {
+  display: block;
+}
+
+[data-theme='chalk'] .crest-on-dark,
+[data-theme='ivory-gold'] .crest-on-dark {
+  display: none;
+}
+
 /* Gallery photographs.
    Roman's pictures ship in colour and are desaturated here, not in the file,
    which is why the import script no longer bakes greyscale. Hovering restores
