@@ -33,3 +33,6 @@ public/img/incoming/
 # over as a separate folder rather than committed: git is the wrong place for
 # a hundred megabytes of binaries that never change.
 _source-images/
+
+# Local editor and agent tooling. Nothing here affects the site.
+.claude/
