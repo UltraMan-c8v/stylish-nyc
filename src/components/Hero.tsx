@@ -36,7 +36,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden pt-24 pb-14 md:justify-center md:pb-24"
+      className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden pt-24 pb-16 md:justify-center md:pt-24 md:pb-24"
     >
       <div className="shell grid w-full items-center gap-y-10 md:grid-cols-12 md:gap-x-10">
         <div className="relative z-10 md:col-span-7 lg:col-span-6">
@@ -94,7 +94,7 @@ export function Hero() {
         initial={reduce ? false : { opacity: 0, scale: 1.06 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: EASE_OUT }}
-        className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-[46vh] md:inset-y-0 md:left-auto md:h-auto md:w-[46vw] lg:w-[42vw]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-[54vh] md:inset-y-0 md:left-auto md:h-auto md:w-[46vw] lg:w-[42vw]"
       >
         <img
           src="/img/hero-editorial.webp"
@@ -103,12 +103,23 @@ export function Hero() {
           height={2000}
           fetchPriority="high"
           decoding="async"
-          className="size-full object-cover object-[54%_16%] md:object-[58%_20%]"
+          className="size-full object-cover object-[46%_18%] md:object-[42%_22%]"
         />
-        {/* Gradient scrim so the type stays legible where it overlaps. */}
+        {/* The scrim runs in different directions at the two sizes, because the
+            picture sits in different places.
+
+            Desktop: it is a column on the right, so the fade comes in from the
+            left and gives the headline ground to stand on. It stops at 44%
+            rather than 58%; any further and it veils her face, which is the
+            half of the frame worth showing.
+
+            Mobile: it is a band across the top, so the fade runs downward and
+            dissolves the bottom edge into the page. Without it the band ends on
+            a hard horizontal line, which is the single thing that makes a
+            full-width photograph look pasted on rather than part of the page. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-b from-canvas from-0% via-canvas/45 via-30% to-transparent to-72% md:bg-gradient-to-r md:from-canvas md:from-0% md:via-canvas/40 md:via-22% md:to-transparent md:to-58%"
+          className="absolute inset-0 bg-gradient-to-b from-transparent from-22% via-canvas/55 via-72% to-canvas to-97% md:bg-gradient-to-r md:from-canvas md:from-0% md:via-canvas/35 md:via-13% md:to-transparent md:to-44%"
         />
 
         {/* Second scrim, top down, for the header rather than the headline.
