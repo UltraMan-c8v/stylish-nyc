@@ -340,7 +340,7 @@ export function ConceptPage() {
             },
             {
               src: '/img/salon-interior.webp',
-              alt: 'The salon floor, chairs facing tall mirrors.',
+              alt: 'The studio in the morning.',
               label: 'The room',
               span: 'aspect-4/3',
               dir: 'up',

@@ -273,12 +273,6 @@ export const gallery = [
     note: 'Roman at the chair in Chelsea. Every client is his start to finish, with nobody handing you off halfway.',
   },
   {
-    src: '/img/client-slick-smile.webp',
-    alt: 'A laughing client on the street, long dark hair falling straight from a centre part.',
-    caption: 'Straight, worn long',
-    note: 'The same client on the same afternoon, turned into the light. Straightened through the length and left to fall from a centre part.',
-  },
-  {
     src: '/img/client-editorial-gold.webp',
     alt: 'An editorial studio shot: dark hair rolled up into height at the crown and swept back, gold dress, red lip.',
     caption: 'Editorial, rolled volume',

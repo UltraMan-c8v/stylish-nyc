@@ -179,15 +179,9 @@ going to happen, have a developer remove that line.
 
 ## Getting found on Google
 
-The site is set up for it: structured business data, a sitemap, correct titles
-and descriptions. Two things only you can do, and they matter more than
-anything on the site:
+The site is built for it: structured business data describing the salon, a
+sitemap, and correct titles and descriptions on every page. Google can read all
+of it as soon as it crawls the site.
 
-1. **Claim your Google Business Profile** at business.google.com. Use the exact
-   same name, address and phone as the site. This is what puts you in the map
-   results, and it is the single highest-value thing you can do.
-2. **Ask happy clients for Google reviews.** Nothing else moves a local salon
-   up the rankings as reliably.
-
-Then add the site at search.google.com/search-console and submit
-`https://stylishnyc.com/sitemap.xml` so Google finds every page.
+Ranking well locally also takes work outside the site itself. Ask your
+developer about it when you are ready.
